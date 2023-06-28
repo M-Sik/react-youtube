@@ -1,8 +1,8 @@
 import React from 'react';
-import { Video } from '../../types/VideoType';
+import { VideoItem } from '../../types/VideoType';
 
 type Props = {
-  video: Video;
+  video: VideoItem;
 };
 
 export default function VideoCard({ video }: Props) {

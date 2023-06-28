@@ -1,7 +1,7 @@
-export type Video = {
+export type VideoItem = {
   kind: string;
   etag: string;
-  id: string;
+  id: string & { videoId: string };
   snippet: {
     title: string;
     publishedAt: string;
