@@ -7,7 +7,7 @@ export type VideoItem = {
     publishedAt: string;
     channelId: string;
     description: string;
-    thumbnails: object;
+    thumbnails: { medium: { url: string } };
     channelTitle: string;
     categoryId: string;
     liveBroadcastContent: string;
