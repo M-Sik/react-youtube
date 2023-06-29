@@ -1,13 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { VideoItem } from '../types/VideoType';
 
 export default class Youtube {
-  httpClient: any;
-  constructor() {
-    this.httpClient = axios.create({
-      baseURL: 'https://www.googleapis.com/youtube/v3',
-      params: { key: process.env.REACT_APP_YOUTUBE_API_KEY },
-    });
+  apiClient: any;
+  constructor(apiClient: any) {
+    this.apiClient = apiClient;
   }
 
   async search(keyword: string) {
@@ -16,8 +13,8 @@ export default class Youtube {
   }
 
   async #searchByKeyword(keyword: string) {
-    return this.httpClient
-      .get('/search', {
+    return this.apiClient
+      .search({
         params: {
           part: 'snippet',
           maxResults: 25,
@@ -32,8 +29,8 @@ export default class Youtube {
   }
 
   async #mostPopular() {
-    return this.httpClient
-      .get('/videos', {
+    return this.apiClient
+      .videos({
         params: {
           part: 'snippet',
           maxResults: 25,
