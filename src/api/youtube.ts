@@ -20,7 +20,7 @@ export default class Youtube {
       .get('/search', {
         params: {
           part: 'snippet',
-          maxReulsts: 25,
+          maxResults: 25,
           type: 'video',
           q: keyword,
         },
@@ -36,8 +36,8 @@ export default class Youtube {
       .get('/videos', {
         params: {
           part: 'snippet',
-          maxReulsts: 25,
-          type: 'mostPopular',
+          maxResults: 25,
+          chart: 'mostPopular',
         },
       })
       .then((res: AxiosResponse<any, any>) => res.data.items);

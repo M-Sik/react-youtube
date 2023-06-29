@@ -3,7 +3,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import VideoCard from '../components/cards/VideoCard';
 import { VideoItem } from '../types/VideoType';
-import FakeYoutube from '../api/fakeYoutube';
+// import FakeYoutube from '../api/fakeYoutube';
+import Youtube from '../api/youtube';
 
 export default function Videos() {
   const { keyword } = useParams();
@@ -12,7 +13,7 @@ export default function Videos() {
     error,
     data: videos,
   } = useQuery<VideoItem[]>(['videos', keyword], () => {
-    const youtube = new FakeYoutube();
+    const youtube = new Youtube();
     return youtube.search(keyword || '');
   });
 
