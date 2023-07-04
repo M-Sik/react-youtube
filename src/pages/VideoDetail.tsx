@@ -12,8 +12,8 @@ export default function VideoDetail() {
   const { title, channelId, channelTitle, description } = video.snippet;
 
   return (
-    <section>
-      <article>
+    <section className="flex flex-col lg:flex-row">
+      <article className="basis-4/6">
         <iframe
           id="player"
           width="100%"
@@ -22,13 +22,13 @@ export default function VideoDetail() {
           frameBorder="0"
           title="video"
         ></iframe>
-        <div>
-          <h2>{title}</h2>
+        <div className="p-8">
+          <h2 className="text-xl font-bold">{title}</h2>
           <ChannelInfoCard id={channelId} name={channelTitle} />
-          <pre>{description}</pre>
+          <pre className="whitespace-pre-line">{description}</pre>
         </div>
       </article>
-      <section>
+      <section className="basis-2/6">
         <RelatedVideos id={video.id} />
       </section>
     </section>

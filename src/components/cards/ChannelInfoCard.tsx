@@ -12,9 +12,9 @@ export default function ChannelInfoCard({ id, name }: Props) {
   const { data: url } = useQuery(['channel', id], () => youtube.channelImageURL(id));
 
   return (
-    <div>
-      {url && <img src={url} alt={name}></img>}
-      <p>{name}</p>
+    <div className="flex my-4 mb-8 items-center gap-4">
+      {url && <img src={url} alt={name} className="w-10 h-10 rounded-full"></img>}
+      <p className="text-lg font-bold">{name}</p>
     </div>
   );
 }
