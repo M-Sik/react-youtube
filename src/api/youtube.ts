@@ -20,6 +20,21 @@ export default class Youtube {
       );
   }
 
+  async relatedVideos(id: string) {
+    return this.apiClient
+      .search({
+        params: {
+          part: 'snippet',
+          maxResults: 25,
+          type: 'video',
+          relatedToVideoId: id,
+        },
+      })
+      .then((res: AxiosResponse<any, any>) =>
+        res.data.items.map((item: VideoItem) => ({ ...item, id: item.id.videoId })),
+      );
+  }
+
   async #searchByKeyword(keyword: string) {
     return this.apiClient
       .search({
@@ -30,9 +45,8 @@ export default class Youtube {
           q: keyword,
         },
       })
-      .then((res: AxiosResponse<any, any>) => res.data.items)
-      .then((items: VideoItem[]) =>
-        items.map((item: VideoItem) => ({ ...item, id: item.id.videoId })),
+      .then((res: AxiosResponse<any, any>) =>
+        res.data.items.map((item: VideoItem) => ({ ...item, id: item.id.videoId })),
       );
   }
 
