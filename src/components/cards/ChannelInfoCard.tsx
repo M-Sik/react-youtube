@@ -1,5 +1,6 @@
 import React from 'react';
 import { useYoutubeApi } from '../../context/YoutubeApiContext';
+import { useQuery } from '@tanstack/react-query';
 
 type Props = {
   id: string;
@@ -8,6 +9,12 @@ type Props = {
 
 export default function ChannelInfoCard({ id, name }: Props) {
   const { youtube } = useYoutubeApi();
+  const { data: url } = useQuery(['channel', id], () => youtube.channelImageURL(id));
 
-  return <div>{name}</div>;
+  return (
+    <div>
+      {url && <img src={url} alt={name}></img>}
+      <p>{name}</p>
+    </div>
+  );
 }
