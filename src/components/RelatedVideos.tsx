@@ -14,7 +14,7 @@ export default function RelatedVideos({ id }: Props) {
     isLoading,
     error,
     data: videos,
-  } = useQuery(['related', id], () => youtube.relatedVideos(id));
+  } = useQuery(['related', id], () => youtube.relatedVideos(id), { staleTime: 1000 * 60 * 5 });
 
   return (
     <>

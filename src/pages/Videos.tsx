@@ -13,7 +13,9 @@ export default function Videos() {
     isLoading,
     error,
     data: videos,
-  } = useQuery<VideoItem[]>(['videos', keyword], () => youtube.search(keyword || ''));
+  } = useQuery<VideoItem[]>(['videos', keyword], () => youtube.search(keyword || ''), {
+    staleTime: 1000 * 60,
+  });
 
   return (
     <>
